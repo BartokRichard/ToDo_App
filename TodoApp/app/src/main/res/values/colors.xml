@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_500">#4A3780</color>
+    <color name="lightPurple">#D1C4E9</color>
+    <color name="categoryStudy">#607D8B</color>
+    <color name="categoryEvent">#9C27B0</color>
+    <color name="categoryExercise">#FFC107</color>
+    <color name="taskIconColor">#D1C4E9</color>
+    <color name="black">#000000</color>
+    <color name="gray">#808080</color>
+    <color name="white">#FFFFFF</color>
+    <color name="darker_gray">#A9A9A9</color>
+    <color name="selected_icon_background_color">#C3B3E9</color>
+
+</resources>
