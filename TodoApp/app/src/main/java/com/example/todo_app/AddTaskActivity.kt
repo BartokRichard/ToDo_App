@@ -32,7 +32,7 @@ class AddTaskActivity : AppCompatActivity() {
     private lateinit var taskIcon: ImageView
 
     private var selectedCategory: String = "Task"
-    private var selectedCategoryIcon: Int = R.drawable.ic_task // Alapértelmezett ikon
+    private var selectedCategoryIcon: Int = R.drawable.ic_task // Default icon
     private var selectedDate: Long? = null
     private var selectedTime: Long? = null
 

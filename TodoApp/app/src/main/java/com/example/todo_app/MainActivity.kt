@@ -26,13 +26,10 @@ class MainActivity : AppCompatActivity() {
         completedTasksRecyclerView = findViewById(R.id.completedTasksRecyclerView)
         addTaskButton = findViewById(R.id.addTaskButton)
 
-        // Load tasks
         tasks = loadTasks()
 
-        // Setup RecyclerViews
         setupRecyclerViews()
 
-        // Set onClick listener for the add task button
         addTaskButton.setOnClickListener {
             startActivity(Intent(this, AddTaskActivity::class.java))
         }

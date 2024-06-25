@@ -9,7 +9,7 @@ data class Task(
     val time: Long?,
     val category: String,
     var isCompleted: Boolean,
-    val categoryIcon: Int // Tárolja az ikon erőforrás ID-ját
+    val categoryIcon: Int // Category icon ID
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
