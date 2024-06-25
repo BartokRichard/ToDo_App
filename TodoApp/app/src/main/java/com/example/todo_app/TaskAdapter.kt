@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class TaskAdapter(
@@ -33,16 +34,14 @@ class TaskAdapter(
         val task = tasks[position]
 
         holder.taskTitle.text = task.title
-        holder.taskTime.text = SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault()).format(task.time ?: 0L)
+        holder.taskTime.text = SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault()).format(Date(task.date ?: 0L))
         holder.taskCheckBox.isChecked = task.isCompleted
-        holder.taskIcon.setImageResource(task.categoryIcon)
 
-        if (task.isCompleted) {
-            holder.taskTitle.paintFlags = holder.taskTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            holder.taskTime.paintFlags = holder.taskTime.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        // Set strikethrough for completed tasks
+        holder.taskTitle.paintFlags = if (task.isCompleted) {
+            holder.taskTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         } else {
-            holder.taskTitle.paintFlags = holder.taskTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-            holder.taskTime.paintFlags = holder.taskTime.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            holder.taskTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
         }
 
         holder.taskCheckBox.setOnCheckedChangeListener { _, _ ->

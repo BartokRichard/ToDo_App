@@ -3,18 +3,23 @@ package com.example.todo_app
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var pendingTasksRecyclerView: RecyclerView
     private lateinit var completedTasksRecyclerView: RecyclerView
     private lateinit var addTaskButton: Button
+    private lateinit var dateText: TextView
     private lateinit var tasks: MutableList<Task>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +30,19 @@ class MainActivity : AppCompatActivity() {
         pendingTasksRecyclerView = findViewById(R.id.pendingTasksRecyclerView)
         completedTasksRecyclerView = findViewById(R.id.completedTasksRecyclerView)
         addTaskButton = findViewById(R.id.addTaskButton)
+        dateText = findViewById(R.id.dateText)
 
+        // Set the current date
+        val currentDate = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+        dateText.text = currentDate
+
+        // Load tasks
         tasks = loadTasks()
 
+        // Setup RecyclerViews
         setupRecyclerViews()
 
+        // Set onClick listener for the add task button
         addTaskButton.setOnClickListener {
             startActivity(Intent(this, AddTaskActivity::class.java))
         }

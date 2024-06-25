@@ -147,7 +147,16 @@ class AddTaskActivity : AppCompatActivity() {
             return
         }
 
-        val task = Task(title, selectedDate, selectedTime, selectedCategory, false, selectedCategoryIcon)
+        // Add the task to the list
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = selectedDate!!
+        val timeCalendar = Calendar.getInstance()
+        timeCalendar.timeInMillis = selectedTime!!
+        calendar.set(Calendar.HOUR_OF_DAY, timeCalendar.get(Calendar.HOUR_OF_DAY))
+        calendar.set(Calendar.MINUTE, timeCalendar.get(Calendar.MINUTE))
+        val finalDateTime = calendar.timeInMillis
+
+        val task = Task(title, finalDateTime, finalDateTime, selectedCategory, false, selectedCategoryIcon)
         val tasks = loadTasks()
         tasks.add(task)
         saveTasks(tasks)
@@ -156,6 +165,7 @@ class AddTaskActivity : AppCompatActivity() {
 
         finish()
     }
+
 
     private fun scheduleNotification(task: Task) {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
